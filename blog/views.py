@@ -26,21 +26,20 @@ from .models import Post
 #     }
 # ]
 def home(request):
-	# context = {
-	#    'posts': posts
-	#    'posts': Post.objects.all()
+	context = {
+	   # 'posts': posts
+	   'posts': Post.objects.all()
 
-	# }
+	}
 	
-	data = Post.objects.all()
-
-	return render(request, 'blog/home.html', {'posts': data})
+	# data = Post.objects.all()
+	return render(request, 'blog/home.html', context)
 
 
 class PostListView(ListView):
 	model = Post
 	name = 'blog/home.html'
-	context_objects_name = 'data'
+	context_objects_name = 'posts'
 	ordering = ['-date_posted']
 	paginate_by = 4
 
