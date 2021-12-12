@@ -38,7 +38,7 @@ def home(request):
 
 class PostListView(ListView):
 	model = Post
-	name = 'blog/home.html'
+	template_name = 'blog/home.html'
 	context_objects_name = 'posts'
 	ordering = ['-date_posted']
 	paginate_by = 4
@@ -54,7 +54,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     	form.instance.author = self.request.user
     	return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content']
 
